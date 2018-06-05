@@ -1,0 +1,55 @@
+"  call dein#add('Shougo/neosnippet.vim')
+"  call dein#add('Shougo/neosnippet-snippets')
+"  call dein#add('Shougo/deoplete.nvim')
+"  call dein#add('bling/vim-airline')
+"  call dein#add('kien/ctrlp.vim')
+"  call dein#add('dyng/ctrlsf.vim')
+"  call dein#add('fatih/vim-go')
+"  call dein#add('scrooloose/nerdtree')
+"  call dein#add('vim-scripts/taglist.vim')
+"  call dein#add('chriskempson/vim-tomorrow-theme')
+"
+
+let mapleader = " "
+
+colorscheme Tomorrow-night
+
+set nocompatible
+set backspace=indent,eol,start
+
+filetype plugin indent on
+
+syntax enable
+set expandtab
+set tabstop=2
+
+set ignorecase
+set number
+set showcmd
+
+"==================================================================
+"keymap
+"
+nnoremap <Leader>s :CtrlSF<CR>
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>t :TlistToggle<CR>
+nnoremap <leader>f :FormatCode<CR>
+
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+
+autocmd BufReadPost *
+      \ if line("'\"")>0&&line("'\"")<=line("$") |
+      \ exe "normal g'\"" |
+      \ endif
+
+fun! TrimWhitespace()
+  let l:save_cursor = getpos('.')
+  %s/\s\+$//e
+  call setpos('.', l:save_cursor)
+endfun
+
